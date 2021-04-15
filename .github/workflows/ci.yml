@@ -30,4 +30,5 @@ jobs:
         run: |
           echo "Hallo ich bin hier"
           ls -l target/
+          ssh secrets.ORAVM_USER@secrets.ORAVM_IP sudo systemctl stop quarkus.service
           scp target/gh-actions-demo-1.0.0-SNAPSHOT-runner.jar ${{ secrets.ORAVM_USER }}@${{ secrets.ORAVM_IP }}:
