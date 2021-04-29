@@ -18,7 +18,9 @@ jobs:
         with:
           java-version: 11
       - name: Build
-        run: ./mvnw clean package -Dquarkus.package.type=uber-jar -B
+        run: |
+          ./mvnw clean package -Dquarkus.package.type=uber-jar -B
+          ./prepare-to-docker.sh
       - name: install ssh key
         uses: webfactory/ssh-agent@v0.4.1
         with:
@@ -32,3 +34,5 @@ jobs:
           ls -l target/
           ssh secrets.ORAVM_USER@secrets.ORAVM_IP sudo systemctl stop quarkus.service
           scp target/gh-actions-demo-1.0.0-SNAPSHOT-runner.jar ${{ secrets.ORAVM_USER }}@${{ secrets.ORAVM_IP }}:
+      - name: build docker image
+        run: docker build -t registry.cloud.htl-leonding.ac.at/s.knogler/demo .
