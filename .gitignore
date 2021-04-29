@@ -38,3 +38,6 @@ nb-configuration.xml
 # Local environment
 .env
 maven-wrapper.jar
+
+src/main/docker/gh-actions-demo-1.0.0-SNAPSHOT-runner.jar
+src/main/docker/gh-actions-demo-dev.jar
